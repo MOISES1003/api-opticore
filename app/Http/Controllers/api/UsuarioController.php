@@ -41,12 +41,15 @@ class UsuarioController extends Controller
         // Crear un nuevo token
 
         $token = $user->createToken($request->usuario)->plainTextToken;
-
+    // Unificar el usuario y el token en un solo array
+    $response = [
+        "user" => $user,
+        "token" => $token
+    ];
         return response()->json([
             "success" => true,
-            "data" => $user,
-            "message" => "Cliente logueado",
-            "token" => $token
+            "data" => $response,
+            "message" => "Cliente logueado"
         ]);
     }
 }
