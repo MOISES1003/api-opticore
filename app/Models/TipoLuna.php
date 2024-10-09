@@ -5,36 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lente extends Model
+class TipoLuna extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "id_lentes",
-        "id_empresa",
-        "id_tipoLuna",
-        "caracteristicas_Principal",
-        "poder_dioptria",
-        "stock",
-        "nivel_antirreflejo",
-        "polarizacion",
-        "proteccion_uv",
-        "indice_refraccion",
-        "fotocromatica",
-        "color_luna",
-        "material",
-        "descripcion",
-        "precio",
-        "id_proveedor",
-        "created_at",
-        "updated_at"
+        "id_tipoLuna ",
+        "nombre"
     ];
 
     //CON ESTO INDICAMOS EL NOMBRE DE LA TABLA DE LA BASE DE DATOS QUE TENEMOS CREADA
-    protected $table = 'lentes';
+    protected $table = 'tipo_luna';
 
     //al trabajar con token ponemos esto para decir que así se llama el campo id de nuestra tabla
     //lo mismo hacemos cuando usamos request
-    protected $primaryKey = 'id_lentes';
+    protected $primaryKey = 'id_tipoLuna';
 
 
     //insertar dentro de la lista los campos a ocultar
@@ -45,9 +29,5 @@ class Lente extends Model
 
     //decimos que no estamos utilizando fechas en nuestra tabla, ponemos en false para que al momeento de actualizar no
     //sea necesario esos campos
-    // public $timestamps = false;
-    public function Tipoluna()
-    {
-        return $this->hasOne(TipoLuna::class, 'id_tipoLuna', 'id_tipoLuna');
-    }
+    public $timestamps = false;
 }

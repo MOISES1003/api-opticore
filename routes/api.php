@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\LentesController;
+use App\Http\Controllers\api\TipoLunaController;
 use App\Http\Controllers\api\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +25,16 @@ Route::controller(LentesController::class)
     ->group(function () {
         Route::get("/ShowAllLente/{per_page}", "ShowAllLente");
         Route::post("/CreateLente", "CreateLente");
+        Route::put("/updateLente/{id_lentes}", "updateLente");
     });
 Route::controller(UsuarioController::class)
     ->prefix("usuarios")
     ->group(function () {
         Route::post("/userRegister", "userRegister");
         Route::post("/accessUser", "accessUser");
+    });
+    Route::controller(TipoLunaController::class)
+    ->prefix("tipoLuna")
+    ->group(function () {
+        Route::get("/ShowAllTipoLuna", "ShowAllTipoLuna");
     });

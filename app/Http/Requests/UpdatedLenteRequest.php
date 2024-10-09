@@ -22,11 +22,21 @@ class UpdatedLenteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "codigo"=>"required",
-            "nombre"=>"required",
-            "serie"=>"required",
+            "id_empresa"=>"required",
+            "id_tipoLuna"=>"required",
+            "caracteristicas_Principal"=>"required",
+            "poder_dioptria"=>"required",
             "stock"=>"required",
-            "marca"=>"required",
+            "nivel_antirreflejo"=>"required",
+            "polarizacion"=>"required",
+            "proteccion_uv"=>"required",
+            "indice_refraccion"=>"required",
+            "fotocromatica"=>"required",
+            "color_luna"=>"required",
+            "material"=>"required",
+            "descripcion"=>"required",
+            "precio"=>"required",
+            "id_proveedor"=>"required",
         ];
     }
 }
