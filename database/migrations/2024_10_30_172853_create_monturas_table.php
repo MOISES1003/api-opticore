@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('monturas', function (Blueprint $table) {
             $table->id('d_montura'); // PRIMARY KEY
-            $table->unsignedBigInteger('id_empresa'); // Relación con la empresa
+            $table->integer('id_empresa'); // Relación con la empresa
             $table->text('serie'); // Campo para la serie
             $table->text('codigo'); // Campo para el código
             $table->integer('stock'); // Campo para el stock
