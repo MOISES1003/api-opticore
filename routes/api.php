@@ -35,13 +35,13 @@ Route::controller(UsuarioController::class)
         Route::post("/userRegister", "userRegister");
         Route::post("/accessUser", "accessUser");
     });
-Route::controller(TipoLunaController::class)
+    Route::controller(TipoLunaController::class)
     ->prefix("tipoLuna")
     ->group(function () {
         Route::get("/ShowAllTipoLuna", "ShowAllTipoLuna");
     });
 
-Route::controller(MonturasController::class)
+    Route::controller(MonturasController::class)
     ->prefix("monturas")
     ->group(function () {
         Route::get("/ShowAllMonturas/{per_page}/{id_empresa}", "ShowAllMonturas");
