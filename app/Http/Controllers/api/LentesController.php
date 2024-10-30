@@ -34,6 +34,24 @@ class LentesController extends Controller
             ], 500);
         }
     }
+    public function ShowAllLenteStock()
+    {
+        try {
+            $lents =  Lente::with('Tipoluna')->where('stock', '!=', 0)->get();
+            return response()->json([
+                'success' => true,
+                'data' => $lents,
+            ]);
+        } catch (\Exception $e) {
+            // el log sirver para registrar elerror en los archivos log
+            // Log::error('error al mostrar los lentes: '.$e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Hubo un error al obtener los datos.',
+                'error' => $e->getMessage() // Puedes personalizar qué información del error mostrar
+            ], 500);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -69,18 +87,18 @@ class LentesController extends Controller
     {
         // Actualiza el lente con los nuevos datos
         $id_lentes->update($request->all());
-    
-        // Recarga el modelo para obtener los valores actualizados
-        $lenteActualizado = $id_lentes->fresh();
-    
-        // Devuelve los datos del lente actualizado
+
+        // Recarga el modelo para obtener los valores actualizados con la relación 'tipoluna'
+        $lenteConTipoluna = Lente::with('Tipoluna')->find($id_lentes->id_lentes);
+
+        // Devuelve los datos del lente actualizado con la relación 'tipoluna'
         return response()->json([
             "success" => true,
-            "data" => $lenteActualizado,
+            "data" => $lenteConTipoluna,
             "message" => "Lente actualizado correctamente",
         ]);
     }
-    
+
     // public function update(ActualizarProductoCotizacion $request, ProductCotizacion $id_productos_cotizacion)
     // {
     //     $id_productos_cotizacion->update($request->all());

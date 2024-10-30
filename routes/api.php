@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\LentesController;
+use App\Http\Controllers\api\MonturasController;
 use App\Http\Controllers\api\TipoLunaController;
 use App\Http\Controllers\api\UsuarioController;
 use Illuminate\Http\Request;
@@ -24,6 +25,7 @@ Route::controller(LentesController::class)
     ->prefix("lentes")
     ->group(function () {
         Route::get("/ShowAllLente/{per_page}", "ShowAllLente");
+        Route::get("/ShowAllLenteStock", "ShowAllLenteStock");
         Route::post("/CreateLente", "CreateLente");
         Route::put("/updateLente/{id_lentes}", "updateLente");
     });
@@ -33,8 +35,14 @@ Route::controller(UsuarioController::class)
         Route::post("/userRegister", "userRegister");
         Route::post("/accessUser", "accessUser");
     });
-    Route::controller(TipoLunaController::class)
+Route::controller(TipoLunaController::class)
     ->prefix("tipoLuna")
     ->group(function () {
         Route::get("/ShowAllTipoLuna", "ShowAllTipoLuna");
+    });
+
+Route::controller(MonturasController::class)
+    ->prefix("monturas")
+    ->group(function () {
+        Route::get("/ShowAllMonturas/{per_page}/{id_empresa}", "ShowAllMonturas");
     });
